@@ -1,0 +1,66 @@
+import { createContext, ReactNode, useContext, useState } from "react";
+
+type BasketProviderProps = {
+  children: ReactNode;
+};
+
+export type BasketItem = {
+  id: string;
+  quantity: number;
+};
+
+type BasketContextType = {
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
+  basketItems: BasketItem[];
+};
+
+const BasketContext = createContext({} as BasketContextType);
+
+export const useBasket = () => {
+  return useContext(BasketContext);
+};
+
+export const BasketProvider = ({ children }: BasketProviderProps) => {
+  const [basketItems, setBasketItems] = useState<BasketItem[]>([]);
+
+  const increaseQuantity = (id: string) => {
+    setBasketItems((currentItems) => {
+      if (currentItems.find((item) => item.id === id) === undefined) {
+        return [...currentItems, { id, quantity: 1 }];
+      } else {
+        return currentItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+  };
+
+  const decreaseQuantity = (id: string) => {
+    setBasketItems((currentItems) => {
+      if (currentItems.find((item) => item.id === id)?.quantity === 1) {
+        return currentItems.filter((item) => item.id !== id);
+      } else {
+        return currentItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity - 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+  };
+
+  return (
+    <BasketContext.Provider
+      value={{increaseQuantity, decreaseQuantity, basketItems }}
+    >
+      {children}
+    </BasketContext.Provider>
+  );
+};

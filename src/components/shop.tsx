@@ -1,18 +1,15 @@
 import { ProductType } from "./product";
+import { Product } from "./product";
 
-interface ProductsList {
-  products: ProductType[]
+type ProductsList = {
+  products: ProductType[];
 }
 
-export const Shop: React.FC<ProductsList> = ({products}) => {
-
+export const Shop: React.FC<ProductsList> = ({ products }) => {
   return (
-    <div>
+    <div className="shop">
       {products.map((product) => (
-        <div>
-          <div>{product.name}</div>
-          <div>{product.price}</div>
-        </div>
+        <Product name={product.name} price={product.price } key={product.name}/>
       ))}
     </div>
   );
