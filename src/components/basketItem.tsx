@@ -1,6 +1,6 @@
 import { BasketItemType, useBasket } from "../context/BasketContext";
 import "../styles/basket.scss";
-import { products } from "../data";
+import products from "../data/products.json";
 
 export const BasketItem = ({ id, quantity }: BasketItemType) => {
   const { increaseQuantity, decreaseQuantity, removeFromBasket } = useBasket();
@@ -15,7 +15,7 @@ export const BasketItem = ({ id, quantity }: BasketItemType) => {
         <div>Product {id}</div>
       </div>
       <div className="right">
-        <div>£{item.price} </div>
+        <div>£{(item.price / 100).toFixed(2)} </div>
         <div className="count">
           <button
             className="circularButton"

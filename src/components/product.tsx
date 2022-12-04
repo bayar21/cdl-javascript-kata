@@ -3,7 +3,6 @@ import { useBasket } from "../context/BasketContext";
 export type ProductType = {
   name: string;
   price: number;
-  special?: boolean;
   imageUrl: string;
   specialPrice?: number;
   specialCount?: number;
@@ -13,7 +12,6 @@ export const Product: React.FC<ProductType> = ({
   name,
   price,
   imageUrl,
-  special,
   specialCount,
   specialPrice,
 }) => {
@@ -24,13 +22,13 @@ export const Product: React.FC<ProductType> = ({
       <div className="bottom">
         <div className="productInfo">
           <div>Product {name}</div>
-          <div>£{price}</div>
+          <div>£{price / 100}</div>
         </div>
         <button onClick={() => increaseQuantity(name)}>Add to basket</button>
       </div>
-      {special && (
+      {specialPrice && (
         <div className="special">
-          Special deal: Buy {specialCount} for £{specialPrice}
+          Special deal: Buy {specialCount} for £{specialPrice / 100}
         </div>
       )}
     </div>

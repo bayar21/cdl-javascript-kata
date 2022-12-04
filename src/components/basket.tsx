@@ -1,23 +1,33 @@
 import { BasketItemType } from "../context/BasketContext";
-import { BasketItem, Checkout } from "./"
+import { BasketItem, CheckoutItem } from "./";
+import products from "../data/products.json";
+import { getTotal } from "../utils";
 
 type BasketProps = {
-  items: BasketItemType[];
+  basketItems: BasketItemType[];
 };
 
-export const Basket = ({ items }: BasketProps) => {
+export const Basket = ({ basketItems }: BasketProps) => {
   return (
     <div className="basketContainer">
       <div className="basket">
         <div>Shopping basket</div>
         <div className="items">
-          {items.map((item) => {
+          {basketItems.map((item) => {
             return <BasketItem key={item.id} {...item} />;
           })}
         </div>
       </div>
       <div className="checkout">
-        <Checkout />
+        <h4 className="title">Checkout</h4>
+        {basketItems.map((item) => {
+          return <CheckoutItem key={item.id} {...item} />;
+        })}
+        {basketItems.length > 0 && <div className="divider"></div>}
+        <div className="totalSection">
+          <h4 className="total">Total</h4>
+          <h4>£{getTotal(basketItems, products)}</h4>
+        </div>
       </div>
     </div>
   );
