@@ -1,22 +1,23 @@
-import { BasketItem } from "../context/BasketContext";
+import { BasketItemType } from "../context/BasketContext";
+import { BasketItem, Checkout } from "./"
 
 type BasketProps = {
-  items: BasketItem[];
+  items: BasketItemType[];
 };
 
 export const Basket = ({ items }: BasketProps) => {
   return (
-    <div className="basket">
-      <div>Your basket</div>
-      <div>
-        {items
-          .map((item) => {
-            return (
-              <div key={item.id}>
-                {item.id} , {item.quantity}{" "}
-              </div>
-            );
+    <div className="basketContainer">
+      <div className="basket">
+        <div>Shopping basket</div>
+        <div className="items">
+          {items.map((item) => {
+            return <BasketItem key={item.id} {...item} />;
           })}
+        </div>
+      </div>
+      <div className="checkout">
+        <Checkout />
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ type ProductsList = {
 
 export const Shop: React.FC<ProductsList> = ({ products }) => {
   return (
-    <div className="shop">
+    <div className="shopContainer">
       {products.map((product) => (
-        <Product name={product.name} price={product.price } key={product.name}/>
+        <Product {...product} key={product.name}/>
       ))}
     </div>
   );

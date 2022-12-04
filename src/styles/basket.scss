@@ -1,0 +1,84 @@
+.basket {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  .items {
+    .basketItem {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: aliceblue;
+      width: 90%;
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+      margin: 24px 0 24px 0;
+      height: 60px;
+
+      .left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 40%;
+
+        .basketItemImage {
+          border-radius: 3px;
+          width: 60px;
+          height: 40px;
+          object-fit: cover;
+          margin: 10px;
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        flex-grow: 1;
+
+        .count {
+          display: flex;
+          flex-direction: row;
+          width: 30%;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        .circularButton {
+          background-color: #4de1c1;
+          border-radius: 50%;
+          border-width: 0;
+          width: 30px;
+          height: 30px;
+        }
+
+        .circularButton:hover {
+          background-color: #565abb;
+          width: 35px;
+          height: 35px;
+          cursor: pointer;
+        }
+
+        .removeButton {
+          cursor: pointer;
+        }
+
+        .removeButton:hover {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #565abb;
+  border-radius: 20px;
+  padding: 20px;
+  color: #fefcfc;
+}
